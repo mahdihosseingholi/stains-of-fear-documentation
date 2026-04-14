@@ -1,0 +1,1 @@
+Ultra Max 400 is a faster colour negative film with a coarser grain structure. Tested as the third candidate substrate, this stock's higher sensitivity and different base chemistry produced distinct growth behaviour. The documentation here records how the mold metabolised this emulsion and whether the resulting imagery was legible within the fiction the film was constructing.
