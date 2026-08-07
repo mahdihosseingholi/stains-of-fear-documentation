@@ -1,60 +1,77 @@
 :root {
-    --bg-color: #0e0d0b;
-    --surface-color: #141311;
-    --text-color: #f4f0ec;
-    --text-muted: #8b8884;
-    --accent-color: #4C7359;
-    --accent-silver: #a3a3a3;
-    --border-color: #2a2825;
-    
-    --font-mono: 'JetBrains Mono', monospace;
-    --font-serif: 'Instrument Serif', serif;
+    /* Warm near-black — the film's own register, and it lets the
+       magenta of the cultivated slides carry the colour. */
+    --bg: #0d0c0b;
+    --surface: #171614;
+    --ink: #ece9e3;
+    --body: #c9c4bb;
+    --muted: #8b8579;
+    --faint: #5b554c;
+    --line: #2c2925;
+    --accent: #8fbf9c;
+
+    /* One typeface throughout; hierarchy comes from size,
+       weight, tracking and colour rather than family. */
+    --font: 'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk Text Pro',
+            'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono: var(--font);
+    --font-serif: var(--font);
+    --font-read: var(--font);
+
+    /* Built-in easings are too weak to read as intentional. */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: var(--font-mono);
+html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
     margin: 0;
     padding: 0;
-    overflow-x: auto;
-    overflow-y: auto;
     font-size: 14px;
-    line-height: 1.4;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scrollbar-color: var(--line) transparent;
 }
 
-/* Timeline Layout */
+::selection { background: var(--accent); color: var(--bg); }
+
+body {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+/* ---------- Horizontal timeline layout ---------- */
 #board-container {
-    padding: 6rem 4rem;
+    padding: 7rem 5rem 5rem;
     min-height: 100vh;
     display: inline-flex;
     position: relative;
     align-items: flex-start;
 }
 
+/* The single hairline that runs the length of the timeline */
 #timeline-axis {
     position: absolute;
-    top: 10rem;
-    left: 4rem;
-    min-width: calc(100% - 8rem);
+    top: 8.5rem;
+    left: 5rem;
+    min-width: calc(100% - 10rem);
     height: 1px;
-    background-color: var(--accent-silver);
-    opacity: 0.5;
+    background: var(--line);
     z-index: 0;
 }
 
 #board {
     display: flex;
-    gap: 12rem; /* increased gap for a more stretched timeline */
+    gap: 9rem;
     z-index: 1;
 }
 
-/* Stages */
+/* ---------- Stages ---------- */
 .stage {
     display: flex;
     flex-direction: column;
@@ -62,267 +79,640 @@ body {
 }
 
 .stage-title {
-    font-family: var(--font-serif);
-    font-size: 3rem;
-    font-weight: normal;
-    font-style: italic;
-    color: var(--accent-silver);
-    margin: 0 0 1rem 0;
-    background: var(--bg-color);
-    padding-right: 2rem;
+    font-family: var(--font);
+    font-size: 2.1rem;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin: 0 0 2.25rem 0;
+    padding-right: 1.5rem;
+    background: var(--bg);
     position: relative;
     z-index: 2;
     align-self: flex-start;
+    line-height: 1;
 }
 
 .experiments {
     display: flex;
-    gap: 4rem; /* more spacing between experiments */
-    padding-top: 1rem;
+    gap: 3rem;
+    padding-top: 0.5rem;
 }
 
-/* Nodes / Experiments */
+/* ---------- Nodes ---------- */
 .experiment-node {
     position: relative;
-    width: 240px; /* default compact width */
+    width: 200px;
     cursor: pointer;
-    transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.2s ease;
     display: flex;
     flex-direction: column;
+    transition: width 300ms var(--ease-out);
 }
 
-.experiment-node:hover:not(.expanded) {
-    transform: translateY(-2px);
-}
-
-.experiment-node:hover .node-frame {
-    border-color: var(--accent-silver);
-}
-
-/* Branching vertical drop */
+/* tick + dot connecting each node up to the axis */
 .experiment-node::before {
     content: '';
     position: absolute;
-    top: -1rem;
-    left: 1rem;
+    top: -1.75rem;
+    left: 0;
     width: 1px;
-    height: 1rem;
-    background-color: var(--accent-silver);
-    opacity: 0.5;
+    height: 1.75rem;
+    background: var(--line);
+}
+.experiment-node::after {
+    content: '';
+    position: absolute;
+    top: calc(-1.75rem - 3px);
+    left: -3px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--faint);
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+.experiment-node:hover::after,
+.experiment-node.expanded::after {
+    background: var(--accent);
+    border-color: var(--accent);
 }
 
 .node-frame {
-    background: var(--surface-color);
-    border: 1px solid var(--border-color);
-    padding: 0.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    transition: border-color 0.3s ease;
+    gap: 0.85rem;
+    transition: opacity 200ms ease, transform 200ms var(--ease-out);
 }
+/* Touch devices fire :hover on tap — gate it. */
+@media (hover: hover) and (pointer: fine) {
+    .experiment-node:hover .node-frame { opacity: 0.72; }
+}
+.experiment-node:active .node-frame { transform: scale(0.985); }
+.experiment-node.expanded .node-frame { display: none; }
 
 .node-thumbnail {
     width: 100%;
-    aspect-ratio: 16/9;
-    background-color: var(--bg-color);
+    aspect-ratio: 4 / 3;
+    background: var(--surface);
     object-fit: cover;
     display: block;
-    filter: grayscale(80%) contrast(1.2);
+    border: 1px solid var(--line);
+}
+
+.node-thumbnail--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0 7px,
+            rgba(139, 133, 123, 0.07) 7px 8px
+        ),
+        var(--surface);
+}
+.node-thumbnail--empty span {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--faint);
+    background: var(--surface);
+    padding: 0.35rem 0.6rem;
 }
 
 .node-label {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-color);
+    letter-spacing: 0.14em;
+    color: var(--ink);
     margin: 0;
-    padding: 0.5rem 0.25rem;
+    font-weight: 500;
 }
 
-/* Inline Expanded State */
+/* ---------- Contents preview on the closed card ---------- */
+.node-index {
+    list-style: none;
+    margin: 0.1rem 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+}
+.node-index li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    line-height: 1.35;
+}
+.node-index-name {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.node-index-count {
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+    color: var(--faint);
+}
+.experiment-node.expanded .node-index { display: none; }
+
+/* ---------- Lightbox ---------- */
+body.lb-locked { overflow: hidden; }
+
+#lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3.5rem;
+    background: rgba(8, 7, 6, 0.94);
+    opacity: 0;
+    /* pointer-events rather than visibility: a transitioned visibility can
+       leave the overlay unhittable even once it is on screen. */
+    pointer-events: none;
+    transition: opacity 200ms var(--ease-out);
+}
+#lightbox.open { opacity: 1; pointer-events: auto; }
+
+.lb-figure {
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    /* Nothing appears from nothing — settle the last few percent. */
+    transform: scale(0.965);
+    transition: transform 260ms var(--ease-out);
+}
+#lightbox.open .lb-figure { transform: scale(1); }
+
+.lb-image {
+    max-width: 100%;
+    max-height: calc(100vh - 9rem);
+    object-fit: contain;
+    display: block;
+    border: 1px solid var(--line);
+    background: var(--surface);
+}
+
+.lb-caption {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-align: center;
+    max-width: 70ch;
+}
+.lb-count { color: var(--faint); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+
+.lb-close, .lb-nav {
+    position: absolute;
+    /* The figure fills the frame on small screens — controls stay above it. */
+    z-index: 2;
+    background: rgba(8, 7, 6, 0.55);
+    border: none;
+    border-radius: 999px;
+    color: var(--ink);
+    cursor: pointer;
+    font-family: var(--font);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    transition: color 160ms ease, background-color 160ms ease, transform 160ms var(--ease-out);
+}
+.lb-close {
+    top: 1.25rem; right: 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1;
+    width: 2.4rem; height: 2.4rem;
+    display: flex; align-items: center; justify-content: center;
+}
+.lb-nav {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.9rem;
+    line-height: 1;
+    width: 2.8rem; height: 2.8rem;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 0 0.15em 0;
+}
+.lb-prev { left: 0.75rem; }
+.lb-next { right: 0.75rem; }
+.lb-nav[hidden] { display: none; }
+
+@media (hover: hover) and (pointer: fine) {
+    .lb-close:hover, .lb-nav:hover { background: rgba(8, 7, 6, 0.85); }
+}
+.lb-close:active { transform: scale(0.92); }
+.lb-nav:active { transform: translateY(-50%) scale(0.92); }
+
+/* Anything openable should say so. */
+@media (hover: hover) and (pointer: fine) {
+    .node-expanded-content .grid-item img,
+    .node-expanded-content .series-frame img { cursor: zoom-in; transition: opacity 160ms ease; }
+    .node-expanded-content .grid-item img:hover,
+    .node-expanded-content .series-frame img:hover { opacity: 0.82; }
+}
+
+/* ---------- Inline expanded state ---------- */
 .experiment-node.expanded {
-    width: calc(240px + 60vw); /* Expands horizontally */
-    max-width: 1000px;
+    width: calc(200px + 58vw);
+    max-width: 940px;
     cursor: default;
 }
 
 .node-content-wrapper {
     display: none;
     opacity: 0;
-    margin-top: 1rem;
-    background: var(--surface-color);
-    border-left: 2px solid var(--accent-color);
-    padding: 2rem 3rem;
+    margin-top: 0;
 }
 
 .experiment-node.expanded .node-content-wrapper {
     display: block;
-    animation: fadeInData 0.5s 0.2s forwards; /* waits for stretch animation slightly */
+    animation: fadeInData 260ms 120ms var(--ease-out) forwards;
 }
 
+/* Never from nothing — content lifts the last few pixels into place. */
 @keyframes fadeInData {
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .close-panel-btn {
     background: none;
-    border: 1px solid var(--border-color);
-    color: var(--text-muted);
+    border: none;
+    color: var(--muted);
     font-family: var(--font-mono);
-    font-size: 0.8rem;
-    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0;
     cursor: pointer;
-    margin-bottom: 2rem;
-    transition: all 0.2s ease;
-    align-self: flex-start;
+    margin-bottom: 2.5rem;
+    transition: color 200ms ease, transform 160ms var(--ease-out);
 }
-
-.close-panel-btn:hover {
-    color: var(--text-color);
-    border-color: var(--accent-silver);
-}
+.close-panel-btn:hover { color: var(--ink); }
+.close-panel-btn:active { transform: scale(0.97); }
 
 .expanded-header h2 {
-    font-family: var(--font-serif);
-    font-size: 3.5rem;
-    font-weight: normal;
-    margin: 0 0 2rem 0;
-    line-height: 1.1;
-    color: var(--text-color);
+    font-family: var(--font);
+    font-size: 2.4rem;
+    font-weight: 500;
+    letter-spacing: -0.028em;
+    margin: 0 0 1.75rem 0;
+    line-height: 1.05;
+    color: var(--ink);
 }
 
+/* ---------- Prose ---------- */
 .prose {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #d1cbc3;
-    max-width: 70ch;
-    margin-bottom: 2rem;
+    font-family: var(--font);
+    font-size: 0.98rem;
+    line-height: 1.72;
+    letter-spacing: -0.004em;
+    color: var(--body);
+    max-width: 64ch;
+    margin-bottom: 2.5rem;
 }
+.prose p { margin: 0 0 1.4rem 0; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { font-weight: 600; color: var(--ink); }
 
-.prose p {
-    margin-bottom: 1.5rem;
-}
-
+/* ---------- Media grid ---------- */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
     align-items: start;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
+.grid:last-child { margin-bottom: 0; }
 
 .grid-item {
     width: 100%;
-    background: var(--bg-color);
-    border: 1px solid var(--border-color);
-    padding: 0.25rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
 }
-
 .grid-item img, .grid-item video {
     width: 100%;
     display: block;
     object-fit: cover;
 }
+.grid-item video { background: #000; }
 
-.grid-item video {
-    background: black;
+.grid-item.doc-item { grid-column: 1 / -1; }
+.doc-item embed { display: block; background: var(--surface); }
+.doc-item a {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.9rem;
+    text-align: center;
+    border-top: 1px solid var(--line);
 }
+.doc-item a:hover { color: var(--ink); }
 
-.doc-item embed {
-    filter: invert(0.9) hue-rotate(180deg); /* Darken pdf view if possible */
-}
-
-/* Sub-categories UI */
+/* ---------- Sub-category tabs ---------- */
 .subcat-tabs {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
     flex-wrap: wrap;
 }
 
 .subcat-tab {
     background: none;
-    border: 1px solid var(--border-color);
-    color: var(--text-muted);
+    border: 1px solid var(--line);
+    color: var(--muted);
     font-family: var(--font-mono);
-    font-size: 0.85rem;
-    padding: 0.75rem 1.5rem;
+    font-size: 0.72rem;
+    padding: 0.55rem 1.1rem;
     cursor: pointer;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: all 0.2s ease;
+    letter-spacing: 0.1em;
+    transition: color 200ms ease, border-color 200ms ease,
+                background-color 200ms ease, transform 160ms var(--ease-out);
 }
-
-.subcat-tab:hover {
-    color: var(--text-color);
-    border-color: var(--accent-silver);
+@media (hover: hover) and (pointer: fine) {
+    .subcat-tab:hover { color: var(--ink); border-color: var(--faint); }
 }
-
+.subcat-tab:active { transform: scale(0.97); }
 .subcat-tab.active {
-    background: var(--text-color);
-    color: var(--bg-color);
-    border-color: var(--text-color);
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
 }
 
-.subcat-content {
-    display: none;
-    animation: fadeInData 0.3s forwards;
+.subcat-content { display: none; }
+.subcat-content.active { display: block; animation: fadeInData 0.3s forwards; }
+
+/* ---------- Overview panel ---------- */
+.overview-stage {
+    min-width: 380px;
+    max-width: 420px;
+    border-right: 1px solid var(--line);
+    padding-right: 5rem;
+    margin-right: 1rem;
+}
+#film-overview { padding-top: 0; }
+
+.overview-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
 }
 
-.subcat-content.active {
+.overview-title {
+    font-family: var(--font);
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin: 0 0 1.25rem 0;
+    line-height: 1;
+}
+
+.overview-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.overview-logline {
+    font-family: var(--font-read);
+    font-size: 1rem;
+    line-height: 1.68;
+    color: var(--body);
+    margin: 0 0 1.5rem 0;
+}
+
+
+
+/* ---------- Media captions ---------- */
+.media-caption {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    line-height: 1.45;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    padding: 0.7rem 0.8rem;
+    border-top: 1px solid var(--line);
+}
+
+/* ---------- Cultivation series ----------
+   An ordered run of frames where the sequence is the evidence:
+   one slide, read left to right across the dates it was documented. */
+.series-set {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+}
+
+.series-head { max-width: 68ch; margin-bottom: 1.1rem; }
+
+.series-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 0.6rem 0;
+}
+
+.series-note {
+    font-family: var(--font);
+    font-size: 0.94rem;
+    line-height: 1.68;
+    letter-spacing: -0.004em;
+    color: var(--body);
+    margin: 0 0 0.8rem 0;
+}
+.series-note:last-child { margin-bottom: 0; }
+.series-note strong { color: var(--ink); font-weight: 600; }
+.series-note em { font-style: italic; }
+
+.series-strip {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(140px, 1fr);
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+    scrollbar-width: thin;
+}
+
+.series-frame {
+    margin: 0;
+    min-width: 0;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    /* Frames arrive in sequence, mirroring how they are read. */
+    opacity: 0;
+    animation: frameIn 300ms var(--ease-out) forwards;
+}
+.series-frame:nth-child(1) { animation-delay: 0ms; }
+.series-frame:nth-child(2) { animation-delay: 45ms; }
+.series-frame:nth-child(3) { animation-delay: 90ms; }
+.series-frame:nth-child(4) { animation-delay: 135ms; }
+.series-frame:nth-child(5) { animation-delay: 180ms; }
+
+@keyframes frameIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.series-frame img {
+    width: 100%;
     display: block;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
 }
 
-/* Mobile Responsive Structure */
-@media (max-width: 768px) {
-    body {
-        overflow-x: hidden;
-        overflow-y: auto;
+.series-frame figcaption {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    padding: 0.5rem 0.55rem;
+    border-top: 1px solid var(--line);
+    text-align: center;
+}
+
+/* ---------- Overview sections ---------- */
+.overview-section {
+    margin-top: 2.25rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--line);
+}
+
+.overview-section-title {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 500;
+    color: var(--muted);
+    margin: 0 0 1.25rem 0;
+}
+
+.overview-note {
+    font-family: var(--font-read);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--body);
+    margin: 0 0 0.9rem 0;
+}
+.overview-note:last-child { margin-bottom: 0; }
+.overview-note strong { color: var(--ink); font-weight: 600; }
+.overview-note em { font-style: italic; }
+
+
+/* ---------- Reduced motion ----------
+   Fewer and gentler, not zero: keep the fades that aid comprehension,
+   drop everything that moves. */
+@media (prefers-reduced-motion: reduce) {
+    .experiment-node { transition: none; }
+    .experiment-node:active .node-frame,
+    .close-panel-btn:active,
+    .subcat-tab:active { transform: none; }
+
+    .experiment-node.expanded .node-content-wrapper {
+        animation: fadeOnly 200ms ease forwards;
     }
-    
+    .series-frame {
+        animation: fadeOnly 200ms ease forwards;
+        animation-delay: 0ms !important;
+    }
+    @keyframes fadeOnly { from { opacity: 0; } to { opacity: 1; } }
+
+    .lb-figure, #lightbox.open .lb-figure { transform: none; transition: none; }
+    .lb-close:active { transform: none; }
+    .lb-nav:active { transform: translateY(-50%); }
+
+    html { scroll-behavior: auto; }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+    body { overflow-x: hidden; }
+
     #board-container {
         display: flex;
         flex-direction: column;
-        padding: 2rem;
+        padding: 3rem 1.5rem;
     }
-    
+
     #timeline-axis {
         top: 0;
-        left: 2rem;
+        left: 1.5rem;
         width: 1px;
         min-width: 1px;
         height: 100%;
     }
-    
-    #board {
-        flex-direction: column;
-        gap: 4rem;
+
+    #board { flex-direction: column; gap: 4rem; }
+
+    .overview-stage {
+        min-width: 0;
+        max-width: none;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding-right: 0;
+        padding-bottom: 2.5rem;
+        margin-right: 0;
     }
-    
-    .experiment-node {
-        width: calc(100vw - 4rem);
+
+    .experiments { flex-direction: column; gap: 3rem; }
+
+    .experiment-node { width: calc(100vw - 3rem); }
+    .experiment-node.expanded { width: calc(100vw - 3rem); }
+
+    .experiment-node::before,
+    .experiment-node::after { display: none; }
+
+    .overview-title { font-size: 3rem; }
+    .expanded-header h2 { font-size: 2.4rem; }
+
+    .subcat-tabs { flex-direction: column; }
+    .subcat-tab { width: 100%; text-align: left; }
+
+    /* Keep the series readable as a sequence: scroll it rather than
+       reflowing into a grid, which would destroy the left-to-right reading. */
+    .series-strip {
+        grid-auto-columns: minmax(132px, 44vw);
+        margin-right: -1.5rem;
+        padding-right: 1.5rem;
     }
-    
-    .experiment-node.expanded {
-        width: calc(100vw - 4rem);
-    }
-    
-    .node-content-wrapper {
-        padding: 1.5rem;
-    }
-    
-    .expanded-header h2 {
-        font-size: 2.5rem;
-    }
-    
-    .subcat-tabs {
-        flex-direction: column;
-    }
-    
-    .subcat-tab {
-        width: 100%;
-        text-align: left;
-    }
+    .series-set { gap: 2.25rem; }
+
+    #lightbox { padding: 3rem 0.75rem 4.5rem; }
+    .lb-image { max-height: calc(100vh - 11rem); }
+    .lb-nav { font-size: 1.7rem; width: 2.5rem; height: 2.5rem; }
+    .lb-caption { flex-direction: column; gap: 0.35rem; padding: 0 0.5rem; }
 }

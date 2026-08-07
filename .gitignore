@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Tooling / local state
+.claude/
+.agents/
+node_modules/
+
+# Quarantined WhatsApp duplicates (kept locally, not published)
+_removed-duplicates/
+
+# Camera and scanner originals.
+# The site never references these — every one has a web derivative
+# under _web/ (RAW/HEIC/JP2 -> .jpg, MOV -> .mp4). Keeping them out
+# holds the repo near 0.4 GB instead of 2.5 GB and avoids GitHub's
+# 100 MB per-file limit. Keep your own backup of these masters.
+*.RAF
+*.raf
+*.HEIC
+*.heic
+*.jp2
+*.JP2
+*.MOV
+*.mov
+*.xmp
+*.XMP

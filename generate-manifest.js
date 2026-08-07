@@ -1,3 +1,24 @@
+/* ============================================================
+ * ⚠️  DO NOT RUN THIS WITHOUT READING THIS FIRST.
+ *
+ * manifest.js is now maintained BY HAND. It holds work this
+ * script cannot reproduce and WILL overwrite:
+ *
+ *   · every long-form summary (drawn from the finished theses)
+ *   · the Audio experiment (03_Post-production/02_Audio)
+ *   · the `groups` structure — the six E100 cultivation series,
+ *     which this script flattens into one undifferentiated grid
+ *     because it scans subcategories recursively
+ *   · per-image `label` captions (dates, video descriptions)
+ *
+ * The _summary.md files on disk are OLDER and SHORTER than what
+ * manifest.js contains, so regenerating is a downgrade, not a refresh.
+ *
+ * To add new media: drop the files in, then hand-edit manifest.js.
+ * If you ever do need to regenerate, back up manifest.js first and
+ * re-apply the above by hand.
+ * ============================================================ */
+
 const fs = require('fs');
 const path = require('path');
 
