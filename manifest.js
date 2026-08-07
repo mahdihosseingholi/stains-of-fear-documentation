@@ -1916,11 +1916,6 @@ window.SITE_MANIFEST = {
                   "type": "image",
                   "path": "_web/03_Post-production/01_Visual/01_16mm Printing/16mm-printing_placement-04.jpg",
                   "filename": "16mm-printing_placement-04.jp2"
-                },
-                {
-                  "type": "image",
-                  "path": "_web/03_Post-production/01_Visual/01_16mm Printing/16mm-printing_scan-01.jpg",
-                  "filename": "16mm-printing_scan-01.jp2"
                 }
               ]
             },
