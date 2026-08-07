@@ -2024,20 +2024,20 @@ window.SITE_MANIFEST = {
                   "media": [
                     {
                       "type": "image",
-                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Fusion.V2.01.png",
-                      "filename": "Fusion.V2.01.png",
+                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Fusion.V2.01.jpg",
+                      "filename": "Fusion.V2.01.jpg",
                       "label": "V2 · 01"
                     },
                     {
                       "type": "image",
-                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Fusion.V2.02.png",
-                      "filename": "Fusion.V2.02.png",
+                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Fusion.V2.02.jpg",
+                      "filename": "Fusion.V2.02.jpg",
                       "label": "V2 · 02"
                     },
                     {
                       "type": "image",
-                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Fusion.V2.03.png",
-                      "filename": "Fusion.V2.03.png",
+                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Fusion.V2.03.jpg",
+                      "filename": "Fusion.V2.03.jpg",
                       "label": "V2 · 03"
                     }
                   ]
@@ -2072,44 +2072,44 @@ window.SITE_MANIFEST = {
                   "media": [
                     {
                       "type": "image",
-                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/01.placed image.png",
-                      "filename": "01.placed image.png",
+                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/01.placed image.jpg",
+                      "filename": "01.placed image.jpg",
                       "label": "01 · Placed image"
                     },
                     {
                       "type": "image",
-                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/02.color correction.png",
-                      "filename": "02.color correction.png",
+                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/02.color correction.jpg",
+                      "filename": "02.color correction.jpg",
                       "label": "02 · Colour correction"
                     },
                     {
                       "type": "image",
-                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/03.curves.png",
-                      "filename": "03.curves.png",
+                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/03.curves.jpg",
+                      "filename": "03.curves.jpg",
                       "label": "03 · Curves"
                     },
                     {
                       "type": "image",
-                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/04.lens distortion.png",
-                      "filename": "04.lens distortion.png",
+                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/04.lens distortion.jpg",
+                      "filename": "04.lens distortion.jpg",
                       "label": "04 · Lens distortion"
                     },
                     {
                       "type": "image",
-                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/05. defocus.png",
-                      "filename": "05. defocus.png",
+                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/05. defocus.jpg",
+                      "filename": "05. defocus.jpg",
                       "label": "05 · Defocus"
                     },
                     {
                       "type": "image",
-                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/06. glow.png",
-                      "filename": "06. glow.png",
+                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/06. glow.jpg",
+                      "filename": "06. glow.jpg",
                       "label": "06 · Glow"
                     },
                     {
                       "type": "image",
-                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/07. film grain.png",
-                      "filename": "07. film grain.png",
+                      "path": "03_Post-production/01_Visual/04_VFX/Compositing/Look develop/07. film grain.jpg",
+                      "filename": "07. film grain.jpg",
                       "label": "07 · Film grain"
                     }
                   ]
@@ -2157,8 +2157,8 @@ window.SITE_MANIFEST = {
             },
             {
               "type": "image",
-              "path": "03_Post-production/02_Audio/Screenshot 2026-07-21 at 15.13.10.png",
-              "filename": "Screenshot 2026-07-21 at 15.13.10.png",
+              "path": "03_Post-production/02_Audio/Screenshot 2026-07-21 at 15.13.10.jpg",
+              "filename": "Screenshot 2026-07-21 at 15.13.10.jpg",
               "label": "The 7.1.2 Atmos session, with the “plastic film” track in the edit window"
             },
             {
@@ -2285,14 +2285,14 @@ window.SITE_MANIFEST = {
               "media": [
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/cutting rhythm first approach.png",
-                  "filename": "cutting rhythm first approach.png",
+                  "path": "03_Post-production/03_Edit/cutting rhythm first approach.jpg",
+                  "filename": "cutting rhythm first approach.jpg",
                   "label": "First approach"
                 },
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/cutting rhythm second approach.png",
-                  "filename": "cutting rhythm second approach.png",
+                  "path": "03_Post-production/03_Edit/cutting rhythm second approach.jpg",
+                  "filename": "cutting rhythm second approach.jpg",
                   "label": "Second approach"
                 }
               ]
@@ -2303,8 +2303,8 @@ window.SITE_MANIFEST = {
               "media": [
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/rhythm of the mold pov.png",
-                  "filename": "rhythm of the mold pov.png",
+                  "path": "03_Post-production/03_Edit/rhythm of the mold pov.jpg",
+                  "filename": "rhythm of the mold pov.jpg",
                   "label": "Distribution across the timeline"
                 }
               ]
@@ -2315,14 +2315,14 @@ window.SITE_MANIFEST = {
               "media": [
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/locked door first approach.png",
-                  "filename": "locked door first approach.png",
+                  "path": "03_Post-production/03_Edit/locked door first approach.jpg",
+                  "filename": "locked door first approach.jpg",
                   "label": "First approach — one cut"
                 },
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/locked door second approach.png",
-                  "filename": "locked door second approach.png",
+                  "path": "03_Post-production/03_Edit/locked door second approach.jpg",
+                  "filename": "locked door second approach.jpg",
                   "label": "Second approach — two jump cuts"
                 }
               ]
@@ -2333,26 +2333,26 @@ window.SITE_MANIFEST = {
               "media": [
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/when he sees the mold 1.png",
-                  "filename": "when he sees the mold 1.png",
+                  "path": "03_Post-production/03_Edit/when he sees the mold 1.jpg",
+                  "filename": "when he sees the mold 1.jpg",
                   "label": "1"
                 },
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/when he sees the mold 2.png",
-                  "filename": "when he sees the mold 2.png",
+                  "path": "03_Post-production/03_Edit/when he sees the mold 2.jpg",
+                  "filename": "when he sees the mold 2.jpg",
                   "label": "2"
                 },
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/when he sees the mold 3.png",
-                  "filename": "when he sees the mold 3.png",
+                  "path": "03_Post-production/03_Edit/when he sees the mold 3.jpg",
+                  "filename": "when he sees the mold 3.jpg",
                   "label": "3"
                 },
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/when he sees the mold 4.png",
-                  "filename": "when he sees the mold 4.png",
+                  "path": "03_Post-production/03_Edit/when he sees the mold 4.jpg",
+                  "filename": "when he sees the mold 4.jpg",
                   "label": "4"
                 }
               ]
@@ -2363,20 +2363,20 @@ window.SITE_MANIFEST = {
               "media": [
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/canceled approach_different belending mode 1.png",
-                  "filename": "canceled approach_different belending mode 1.png",
+                  "path": "03_Post-production/03_Edit/canceled approach_different belending mode 1.jpg",
+                  "filename": "canceled approach_different belending mode 1.jpg",
                   "label": "1"
                 },
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/canceled approach_different belending mode 2.png",
-                  "filename": "canceled approach_different belending mode 2.png",
+                  "path": "03_Post-production/03_Edit/canceled approach_different belending mode 2.jpg",
+                  "filename": "canceled approach_different belending mode 2.jpg",
                   "label": "2"
                 },
                 {
                   "type": "image",
-                  "path": "03_Post-production/03_Edit/canceled approach_different belending mode 3.png",
-                  "filename": "canceled approach_different belending mode 3.png",
+                  "path": "03_Post-production/03_Edit/canceled approach_different belending mode 3.jpg",
+                  "filename": "canceled approach_different belending mode 3.jpg",
                   "label": "3"
                 }
               ]
