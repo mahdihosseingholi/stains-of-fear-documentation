@@ -172,6 +172,21 @@ function renderGroups(groups) {
         </section>`).join('') + `</div>`;
 }
 
+/* Native lazy-loading does not fire reliably here: the board scrolls
+   horizontally and an expanded panel sits far outside the viewport, so the
+   browser never treats its images as approaching. Anything revealed is
+   content the reader is looking at, so load it explicitly. */
+function revealImages(container) {
+    if (!container) return;
+    container.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        img.loading = 'eager';
+        if (!img.complete) {
+            const src = img.getAttribute('src');
+            if (src) img.setAttribute('src', src);   // re-kick the fetch
+        }
+    });
+}
+
 /* Inline markdown only — for captions and notes that aren't block content. */
 function parseInline(text) {
     if (!text) return '';
@@ -270,6 +285,8 @@ function toggleNode(nodeEl, forceOpen, stage, exp) {
             `;
         }
         
+        revealImages(wrapper);
+
         setTimeout(() => {
             nodeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }, 100);
@@ -384,7 +401,11 @@ function activateSubcategory(nodeEl, subId) {
 
     const contents = nodeEl.querySelectorAll('.subcat-content');
     contents.forEach(c => {
-        if(c.id === `content-${subId}`) c.classList.add('active');
-        else c.classList.remove('active');
+        if (c.id === `content-${subId}`) {
+            c.classList.add('active');
+            revealImages(c);          // a hidden tab's images have not loaded yet
+        } else {
+            c.classList.remove('active');
+        }
     });
 }
