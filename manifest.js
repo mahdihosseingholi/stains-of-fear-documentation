@@ -1873,6 +1873,18 @@ window.SITE_MANIFEST = {
                   "filename": "16mm-printing_arriflex-scan-11.jp2"
                 },
                 {
+                  "type": "video",
+                  "path": "_web/03_Post-production/01_Visual/01_16mm Printing/16mm-printing_scan-01-print.mp4",
+                  "filename": "16mm-printing_scan-01-print.mp4",
+                  "label": "The 16mm print, scanned before cultivation"
+                },
+                {
+                  "type": "video",
+                  "path": "_web/03_Post-production/01_Visual/01_16mm Printing/16mm-printing_scan-02-moulded-negmode.mp4",
+                  "filename": "16mm-printing_scan-02-moulded-negmode.mp4",
+                  "label": "The cultivated 16mm, negative mode"
+                },
+                {
                   "type": "image",
                   "path": "03_Post-production/01_Visual/01_16mm Printing/16mm-printing_bts-photo-01.jpeg",
                   "filename": "16mm-printing_bts-photo-01.jpeg"
