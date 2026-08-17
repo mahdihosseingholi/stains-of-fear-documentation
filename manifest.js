@@ -1820,19 +1820,19 @@ window.SITE_MANIFEST = {
             {
               "id": "16mm Printing",
               "originalName": "01_16mm Printing",
-              "summary": "**Method 3.** Digitally shot footage was printed onto 16mm colour negative, placed in the cultivation box (sealed, ~27–30°C, elevated humidity) for roughly two months, then scanned on an Arriscan and output as ProRes. The image passes through a full chain — digital → analogue → biological → digital — and each transition leaves its own material trace: the sensor's recording, the photochemical print, the biological inscription, and the digital scan.\n\nBecause the print is a **negative**, its densities are inverted and masked, so selective dye loss cannot erupt as vivid colonies the way it does on a reversal slide. Instead the mould reads as a subtractive wearing-away — highlights hollowed out, the image thinning toward the base, closer to chemical corrosion than to growth. Where the other methods show the organism arriving, Method 3 shows it taking away.\n\nThis folder documents the printing and placement, BTS of the cultivation and Arriscan sessions, and the scanned results.",
+              "summary": "**Method 3.** Digitally shot footage was printed onto 16mm colour negative, placed in the cultivation box (sealed, ~27–30°C, elevated humidity) for roughly two months, then scanned on an Arriscan and output as ProRes. The image passes through a full chain — digital → analogue → biological → digital — and each transition leaves its own material trace: the sensor's recording, the photochemical print, the biological inscription, and the digital scan.\n\nBecause the print is a **negative**, its densities are inverted and masked, so selective dye loss cannot erupt as vivid colonies the way it does on a reversal slide. Instead the mould reads as a subtractive wearing-away — highlights hollowed out, the image thinning toward the base, closer to chemical corrosion than to growth. Where the other methods show the organism arriving, Method 3 shows it taking away.\n\nThe two videos at the top are the finished results: the **print** — the footage printed to 16mm and scanned before cultivation — and the **moulded print**, a full scan of that same strip after the mould had grown. Everything after them — the still frames, the placement, and the behind-the-scenes — documents how they were made.",
               "media": [
                 {
                   "type": "video",
                   "path": "_web/03_Post-production/01_Visual/01_16mm Printing/16mm-printing_scan-01-print.mp4",
                   "filename": "16mm-printing_scan-01-print.mp4",
-                  "label": "The 16mm print, scanned before cultivation"
+                  "label": "The print — the footage printed to 16mm and scanned, before cultivation"
                 },
                 {
                   "type": "video",
                   "path": "_web/03_Post-production/01_Visual/01_16mm Printing/16mm-printing_scan-02-moulded-negmode.mp4",
                   "filename": "16mm-printing_scan-02-moulded-negmode.mp4",
-                  "label": "The cultivated 16mm, negative mode"
+                  "label": "The moulded print — full scan of the same 16mm after cultivation (negative mode)"
                 },
                 {
                   "type": "image",
